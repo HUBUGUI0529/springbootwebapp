@@ -13,6 +13,8 @@ public class SpringBootWebApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.print("1234567i");
+		System.out.println("");
 	}
 
 }
