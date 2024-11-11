@@ -1,0 +1,61 @@
+1. 已修改 未暂存
+已经修改了文件，还未进行 git add。
+即工作区的内容不想要了。
+恢复方法
+
+git checkout .
+git checkout -- <FILENAME>  // <FILENAME> 为文件名，把 <FILENAME> 这个文件在工作区的修改全部撤销
+git reset --hard
+
+2. 已暂存 未提交
+已经进行了 git add，还未进行 git commit
+
+即暂存区的内容不想要了
+
+恢复方法
+
+git reset git checkout .
+ 
+git reset HEAD // 删除添加到暂存区的内容，只操作暂存区
+ 
+git reset --hard // 既修改暂存区也修改工作区
+ 
+git reset HEAD -- <FILENAME>
+
+3. 已提交 未推送
+已经进行了git commit，还未进行 git push
+
+恢复方法
+
+git reset HEAD^ // 注意 HEAD 就是回退到当前版本，git reset HEAD^ 回退到上一版本
+ 
+git reset <版本号> // git log 去查版本号
+ 
+git reset --soft HEAD^ // 撤销 commit，本地修改还会存在
+ 
+git reset --hard origin/master // 使用远程仓库覆盖本地仓库
+
+4. 已推送
+已经进行了git push
+
+恢复方法
+
+回滚本地仓库，强制推送覆盖远程仓库（ 切记回滚后不要马上git pull ）
+
+顺序执行以下两个命令
+
+git reset --hard HEAD^
+ 
+git push origin HEAD --force // 强制提交一次，之前错误的提交就从远程仓库删除
+ 
+git reset --soft HEAD^ // 撤销 commit，本地修改还会存在
+
+5. 撤销合并
+进行了git merge
+
+git merge --abort
+
+6. 其他情况
+丢弃某个节点后的全部提交
+
+git reset --hard <COMMITID>
